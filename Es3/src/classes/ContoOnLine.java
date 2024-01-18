@@ -1,5 +1,7 @@
 package classes;
 
+import exceptions.BancaException;
+
 public class ContoOnLine extends ContoCorrente {
     double maxPrelievo;
 
@@ -14,9 +16,11 @@ public class ContoOnLine extends ContoCorrente {
                 + " - Massimo movimenti: " + maxMovimenti + " - Massimo prelievo possibile: " + maxPrelievo);
     }
 
-    public void preleva(double x) {
+    public void preleva(double x) throws BancaException {
         if (x <= maxPrelievo) {
             super.preleva(x);
+        }else{
+            throw new BancaException("Il prelievo non è disponibile. Ti rimangono solo: " + saldo + "€");
         }
     }
 }

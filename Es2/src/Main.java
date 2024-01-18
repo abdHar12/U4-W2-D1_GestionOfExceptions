@@ -1,3 +1,6 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -5,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
         boolean continueTheCycle=true;
         Scanner sc;
+        Logger logger = LoggerFactory.getLogger(Main.class.getName());
         do{
             try {
                 continueTheCycle = false;
@@ -15,8 +19,10 @@ public class Main {
                 System.out.printf("\nInserisci il numero di litri consumati: ");
                 litres = sc.nextInt();
                 System.out.printf("\nSono stati percorsi " + km / litres + " km al litro");
+
             } catch (InputMismatchException e) {
-                System.out.print("Devi inserire un numero!");
+                System.out.println("Devi inserire un numero!");
+                logger.debug(e.toString());
                 continueTheCycle = true;
             } catch (ArithmeticException e) {
                 System.out.print("Litri deve essere diverso da 0!");
@@ -24,4 +30,5 @@ public class Main {
             }
         }while (continueTheCycle==true);
     }
+    
 }
